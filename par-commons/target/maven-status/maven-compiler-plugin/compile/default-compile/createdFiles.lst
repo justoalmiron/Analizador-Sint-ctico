@@ -1,0 +1,6 @@
+py\una\pol\par\commons\entity\Entity.class
+py\una\pol\par\commons\service\ReadOnlyBaseService.class
+py\una\pol\par\commons\repository\Repository.class
+py\una\pol\par\commons\entity\BaseEntity.class
+py\una\pol\par\commons\service\BaseService.class
+py\una\pol\par\commons\repository\ReadOnlyRepository.class

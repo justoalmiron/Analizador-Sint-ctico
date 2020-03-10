@@ -1,7 +1,9 @@
 package py.una.pol.par.parusrmcs.repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import py.una.pol.par.commons.repository.Repository;
+import py.una.pol.par.parusrmcs.model.entity.Product;
 
 /**
  *
@@ -17,37 +19,16 @@ public interface ProductRepository<User, Integer> extends Repository<User, Integ
      * @param apellido
      * @return
      */
-    boolean containsNombreApellido(String nombre, String apellido);
-
-    /**
-     *
-     * @param nombre
-     * @param apellido
-     * @return
-     * @throws Exception
-     */
-    public Collection<User> findByNombreApellido(String nombre, String apellido) throws Exception;
+    public Product buscarProducto(String descripcion);
     
-    /**
-     *
-     * @param loginName
-     * @return
-     */
-    boolean containsLoginName(String loginName);
-
-    /**
-     *
-     * @param loginName
-     * @return
-     * @throws Exception
-     */
-    public Collection<User> findByLoginName(String loginName) throws Exception;
+    public ArrayList<Product> listarCategorias(String descripcion,int numero);
     
-    /**
-     * Metodo para realizar el login en el sistema
-     * @param loginName
-     * @param passwd
-     * @return 
-     */
-    public User login(String loginName, String passwd);
+    
+   
+    public void añadirCarrito();
+    
+   
+    
+    
+    
 }

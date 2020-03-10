@@ -21,6 +21,10 @@ public class Product extends BaseEntity<Integer> {
     public Product() {
         super(0,"");
     }
+
+    
+    
+    
     
     public Product(Integer id, String description) {
         super(id, description);

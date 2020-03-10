@@ -14,80 +14,161 @@ import py.una.pol.par.parusrmcs.model.entity.Product;
  *
  * @author mauricio
  */
-public class InMemProductRepository implements ProductRepository<User, Integer>{
+public class InMemProductRepository implements ProductRepository<Product, Integer>{
     
-    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<Product> productos = new ArrayList<>();
 
     @Override
-    public boolean containsNombreApellido(String nombre, String apellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product buscarProducto(String descripcion) {
+        int i = 0;
+
+        while (i < productos.size()) {
+            if (productos.get(i).getDescription() == descripcion) {
+                break;
+            }
+            i++;
+        }
+        if (i >= productos.size()) {
+            System.out.println("Producto no encontrado");
+            return null;
+        } else {
+            System.out.println(productos.get(i));
+            return productos.get(i);
+        }
+
+    }
+
+    
+    //
+    @Override
+    public ArrayList<Product> listarCategorias(String descripcion, int numero) {
+        int i = numero;
+        ArrayList<Product> productosCategoria = new ArrayList<Product>();
+        while (i < productos.size()) {
+            if (productos.get(i).getCategory().getDescription() == descripcion) {
+                productosCategoria.add(productos.get(i));             
+            }
+            i++;
+        }
+        if(productosCategoria.size()==0){
+            System.out.println("No se encontro la categoria");
+            return null;
+        }else{
+        i=0;
+        while (i < productosCategoria.size()) {
+
+                System.out.println(productosCategoria.get(i));           
+
+            i++;
+        }
+        return productosCategoria;
+        }  
+    }
+
+  
+
+    @Override
+    public void añadirCarrito() {
+      
+        
+        
+        
+        
+     
     }
 
     @Override
-    public Collection<User> findByNombreApellido(String nombre, String apellido) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean containsLoginName(String loginName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Collection<User> findByLoginName(String loginName) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public User login(String loginName, String passwd) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void add(User entity) {
-        users.add(entity);
+    public void add(Product entity) {
+        productos.add(entity);
     }
 
     @Override
     public void remove(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int i = 0;
+        while (i < productos.size()) {
+            if (productos.get(i).getId() == id) {
+                break;
+            }
+            i++;
+        }
+        if (i >= productos.size()) {
+            System.out.println("Producto no encontrado");
+
+        } else {
+            System.out.println(productos.get(i) + " eliminado con exito ");
+            productos.remove(i);
+        }
+
+
+        
     }
 
+//    @Override
+//    public void update(Product entity) {
+//         int i = 0;
+//
+//        while (i < productos.size()) {
+//            if (productos.get(i).getId() == entity.getId()) {
+//                productos.get(i) = entity.get();
+//                break;
+//            }
+//            i++;
+//        }
+//        if (i >= productos.size()) {
+//            System.out.println("Producto no encontrado no se pudo actualizar");
+//            
+//        } else {
+//            System.out.println("producto actualizado");
+//           
+//        }
+//    }
     @Override
-    public void update(User entity) {
-        User retValue = null;
-        for (User user : users) {
-            if (user.getId() == entity.getId()) {
-                //
-            }
-        }
+    public void update(Product entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
     @Override
     public boolean contains(Integer id) {
-        boolean retValue = false;
-        for (User user : users) {
-            if (user.getId() == id) {
-                retValue = true;
+        int i = 0;
+        while (i < productos.size()) {
+            if (productos.get(i).getId() == id) {
+                return true;
             }
+            i++;
         }
-        return retValue;
+        return false;
     }
 
     @Override
     public Entity get(Integer id) {
-        User retValue = null;
-        for (User user : users) {
-            if (user.getId() == id) {
-                retValue = user;
+        int i = 0;
+
+        while (i < productos.size()) {
+            if (productos.get(i).getId() == id) {
+                break;
             }
+            i++;
         }
-        return retValue;
+        if (i >= productos.size()) {
+            System.out.println("Producto no encontrado");
+            return null;
+        } else {
+            System.out.println(productos.get(i));
+            return productos.get(i);
+        }
     }
 
     @Override
-    public Collection<User> getAll() {
-        return users;
+    public Collection<Product> getAll() {
+        return productos;
     }
+
+    
+
+
+
+   
+
     
 }
